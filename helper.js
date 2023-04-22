@@ -1,0 +1,11 @@
+/**
+</> Original base BochilGaming 
+</> Recode simple by @NeKosmic
+**/
+
+import e from"yargs";import t from"os";import r from"path";import{fileURLToPath as a,pathToFileURL as i}from"url";import{createRequire as o}from"module";import n from"fs";import l,{Readable as s}from"stream";let __filename=function e(r=import.meta,o="win32"!==t.platform()){let n=r.url||r;return o?/file:\/\/\//.test(n)?a(n):n:/file:\/\/\//.test(n)?n:i(n).href},__dirname=function e(t){let a=__filename(t,!0),i=/\/$/;return i.test(a)?a:n.existsSync(a)&&n.statSync(a).isDirectory()?a.replace(i,""):r.dirname(a)},__require=function e(t=import.meta){let r=t.url||t;return o(r)},checkFileExists=e=>n.promises.access(e,n.constants.F_OK).then(()=>!0).catch(()=>!1),opts=Object(e(process.argv.slice(2)).exitProcess(!1).parse()),prefix=global.Prefijo,saveStreamToFile=(e,t)=>new Promise((r,a)=>{let i=e.pipe(n.createWriteStream(t));i.once("finish",()=>{r(),i.destroy()}),i.once("error",()=>{a(),i.destroy()})}),kDestroyed=Symbol("kDestroyed"),kIsReadable=Symbol("kIsReadable"),isReadableNodeStream=(e,t=!1)=>!!(e&&"function"==typeof e.pipe&&"function"==typeof e.on&&(!t||"function"==typeof e.pause&&"function"==typeof e.resume)&&(!e._writableState||e._readableState?.readable!==!1)&&(!e._writableState||e._readableState)),isNodeStream=e=>e&&(e._readableState||e._writableState||"function"==typeof e.write&&"function"==typeof e.on||"function"==typeof e.pipe&&"function"==typeof e.on),isDestroyed=e=>{if(!isNodeStream(e))return null;let t=e._writableState,r=e._readableState,a=t||r;return!!(e.destroyed||e[kDestroyed]||a?.destroyed)},isReadableFinished=(e,t)=>{if(!isReadableNodeStream(e))return null;let r=e._readableState;return!r?.errored&&("boolean"!=typeof r?.endEmitted?null:!!(r.endEmitted||!1===t&&!0===r.ended&&0===r.length))},isReadableStream=e=>"function"==typeof l.isReadable?l.isReadable(e):e&&null!=e[kIsReadable]?e[kIsReadable]:"boolean"!=typeof e?.readable?null:!isDestroyed(e)&&(isReadableNodeStream(e)&&!!e.readable&&!isReadableFinished(e)||e instanceof n.ReadStream||e instanceof s);export default{__filename,__dirname,__require,checkFileExists,saveStreamToFile,isReadableStream,opts,prefix};
+
+/**
+[_>] https://github.com/NeKosmic/
+[_>] https://gitlab.com/NeKosmic/
+**/
